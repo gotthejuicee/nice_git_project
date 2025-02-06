@@ -3,6 +3,10 @@
 $repoPath = __DIR__; // Корневая папка проекта
 $branch = "master"; // Замени на нужную ветку
 
+// Изменяем один из файлов (например, добавляем строку с датой)
+$file = $repoPath . '/log.txt';
+file_put_contents($file, "Авто-изменение: " . date("Y-m-d H:i:s") . "\n", FILE_APPEND);
+
 // Команды Git
 $commands = [
     "cd {$repoPath}",
