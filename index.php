@@ -8,12 +8,13 @@ $quotes = [
     "Будущее зависит от того, что ты делаешь сегодня."
 ];
 
-// Выбираем случайную цитату
+// Генерация уникальной строки
 $randomQuote = $quotes[array_rand($quotes)];
+$uniqueID = uniqid('', true);  // Генерация уникального ID
+$logEntry = date("Y-m-d H:i:s") . " - ID: {$uniqueID} - {$randomQuote}" . PHP_EOL;
 
 // Логируем в файл
 $file = __DIR__ . "/log.txt";
-$logEntry = date("Y-m-d H:i:s") . " - " . $randomQuote . PHP_EOL;
 file_put_contents($file, $logEntry, FILE_APPEND);
 
 echo "Запись добавлена: $randomQuote\n";
