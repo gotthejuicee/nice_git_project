@@ -1,0 +1,27 @@
+<?php
+
+$repoPath = '/home/tr461119/panda-zavod.online/www'; // Указываем полный путь к проекту
+$branch = "master"; // Замени на нужную ветку
+
+// Проверяем, является ли папка Git-репозиторием
+if (!is_dir($repoPath . '/.git')) {
+    die("❌ Ошибка: Папка {$repoPath} не является Git-репозиторием!\n");
+}
+
+// Команды Git
+$commands = [
+    "cd {$repoPath}",
+    "git status", // Проверим, что Git работает
+    "git add .",
+    "git commit -m 'Авто-коммит: " . date("Y-m-d H:i:s") . "'",
+    "git push origin {$branch}"
+];
+
+// Выполняем команды
+$output = [];
+$returnVar = 0;
+exec(implode(" && ", $commands), $output, $returnVar);
+
+// Выводим результат
+echo implode("\n", $output) . "\n";
+echo "✅ Git коммит и пуш выполнены.\n";
